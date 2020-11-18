@@ -85,6 +85,15 @@ function init() {
     owl.trigger('prev.owl.carousel');
   });
   //end owl
+  // offcanvas navbar
+  $('[data-toggle="offcanvas"]').on('click', function() {
+    $('.offcanvas-collapse').toggleClass('open');
+    if ($('.offcanvas-collapse').hasClass('open')) {
+      $('[data-toggle="offcanvas"]').attr('aria-expanded', 'true');
+    } else {
+      $('[data-toggle="offcanvas"]').attr('aria-expanded', 'false');
+    }
+  });
   //fix modals
   $('.modal').each(function() {
     $(this).attr({
@@ -108,6 +117,13 @@ $(document).ready(function() {
               xPercent: 100,
               duration: .75
             });
+          } else if (data.trigger.className.includes("nav-link")) {
+            $('.offcanvas-collapse').toggleClass('open');
+            return gsap.to(data.current.container, {
+              yPercent: -100,
+              duration: .75,
+              delay: .5
+            });
           } else {
             return gsap.to(data.current.container, {
               xPercent: -100,
@@ -127,6 +143,11 @@ $(document).ready(function() {
             return gsap.from(data.next.container, {
               xPercent: -100,
               duration: .75
+            });
+          } else if (data.trigger.className.includes("nav-link")) {
+            return gsap.from(data.next.container, {
+              yPercent: 100,
+              duration: .75,
             });
           } else {
 
@@ -172,7 +193,7 @@ $(document).ready(function() {
               scrollTop: 0
             }, "slow");
           }
-          if (data.trigger.className.includes("previous") || data.trigger.className.includes("navbar-brand")) {
+          if (data.trigger.className.includes("previous") || data.trigger.className.includes("navbar-brand") || data.trigger.className.includes("nav-link")) {
 
             return gsap.from(data.next.container, {
               xPercent: -100,

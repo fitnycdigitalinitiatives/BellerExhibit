@@ -15,6 +15,7 @@ body {
 #main {
   min-height: 100vh;
   position: absolute;
+  overflow-x: hidden;
 }
 
 #main[data-barba-namespace="exhibits show"] {
@@ -25,6 +26,45 @@ body {
   padding: 0;
 }
 
+.navbar-brand, .navbar {
+  font-size: 2.5rem;
+}
+
+.offcanvas-collapse {
+  position: fixed;
+  top: 0;
+  /* Height of navbar */
+  bottom: 0;
+  left: 100%;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-top: .25rem;
+  line-height: 1.2;
+  overflow-y: auto;
+  visibility: hidden;
+  box-shadow: -1rem 0 1rem rgba(0, 0, 0, .15);
+  z-index: 1000;
+  background-image: url('../images/ricepaper_v3.png');
+  transition: visibility .5s ease-in-out, -webkit-transform .5s ease-in-out;
+  transition: transform .5s ease-in-out, visibility .5s ease-in-out;
+  transition: transform .5s ease-in-out, visibility .5s ease-in-out, -webkit-transform .5s ease-in-out;
+}
+
+.offcanvas-collapse.open {
+  visibility: visible;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+
+.offcanvas-collapse .exhibit-menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-top: .5rem;
+  padding-right: 1.5rem;
+}
+
 @media (min-width: 576px) {
   .navbar {
     padding-left: 3rem;
@@ -32,10 +72,20 @@ body {
     margin-left: -15px;
     margin-right: -15px;
   }
+
+  .navbar-brand, .navbar {
+    font-size: 3rem;
+  }
+
+  .offcanvas-collapse {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    width: 80%;
+  }
 }
 
 @media (min-width: 768px) {
-  .navbar:not(.sticky-top) {
+  .navbar {
     position: fixed;
     top: 0;
     right: 0;
@@ -44,6 +94,16 @@ body {
     margin-left: 0;
     margin-right: 0;
   }
+
+  .offcanvas-collapse {
+    width: 60%;
+  }
+}
+
+@media (min-width: 992px) {
+  .offcanvas-collapse {
+    width: 50%;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -51,10 +111,10 @@ body {
     padding-left: 4rem;
     padding-right: 4rem;
   }
-}
 
-.navbar-brand, .navbar {
-  font-size: 3rem;
+  .offcanvas-collapse {
+    max-width: 600px;
+  }
 }
 
 .fullscreen {
