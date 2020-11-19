@@ -4,7 +4,7 @@ body {
   font-family: "halyard-text", sans-serif;
   font-weight: 300;
   overflow-x: hidden;
-  background-image: url('../images/ricepaper_v3.png');
+  background-image: url('../images/cheap_diagonal_fabric2.png');
 }
 
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
@@ -41,11 +41,12 @@ body {
   padding-left: 15px;
   padding-top: .25rem;
   line-height: 1.2;
+  font-weight: bold;
   overflow-y: auto;
   visibility: hidden;
   box-shadow: -1rem 0 1rem rgba(0, 0, 0, .15);
   z-index: 1000;
-  background-image: url('../images/ricepaper_v3.png');
+  background-image: url('../images/cheap_diagonal_fabric2.png');
   transition: visibility .5s ease-in-out, -webkit-transform .5s ease-in-out;
   transition: transform .5s ease-in-out, visibility .5s ease-in-out;
   transition: transform .5s ease-in-out, visibility .5s ease-in-out, -webkit-transform .5s ease-in-out;
@@ -123,17 +124,6 @@ body {
 }
 
 #exhibit-landing {
-  background-image: url('../images/ricepaper_v3.png');
-  background-attachment: fixed;
-}
-
-#exhibit-landing:before {
-  content: "";
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -259,6 +249,10 @@ body {
   right: 5px;
   top: 7px;
   font-size: 15px;
+  padding: 0;
+  background: none;
+  border: none;
+  line-height: 1;
 }
 
 .gallery-caption p {
@@ -409,6 +403,10 @@ body {
   right: 5px;
   top: 5px;
   font-size: 15px;
+  padding: 0;
+  background: none;
+  border: none;
+  line-height: 1;
 }
 
 #viewer .nav-tabs {

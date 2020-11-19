@@ -163,9 +163,8 @@ $(document).ready(function() {
         once(data) {
           // only run if it starts on summary page
           if ($('#main').data('barba-namespace') == 'exhibits summary') {
-            var rule = CSSRulePlugin.getRule("#exhibit-landing:before");
             let tl = gsap.timeline(); //create the timeline
-            return tl.from(rule, {
+            return tl.from('#exhibit-landing', {
                 transform: "translateY(-100%)",
                 duration: .75,
                 delay: 1

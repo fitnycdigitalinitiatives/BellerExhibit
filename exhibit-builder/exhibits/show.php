@@ -9,21 +9,21 @@ echo head(array(
       <i class="fas fa-bars" aria-hidden="true"></i><span class="sr-only">Toggle navigation menu</span>
     </button>
     <div class="offcanvas-collapse navbar-collapse" id="navbarSupportedContent">
-    <button class="exhibit-menu border-0 bg-transparent text-dark" type="button" data-toggle="offcanvas" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="exhibit-menu border-0 bg-transparent text-white" type="button" data-toggle="offcanvas" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-times" aria-hidden="true"></i><span class="sr-only">Toggle navigation menu</span>
     </button>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <?php echo exhibit_builder_link_to_exhibit($exhibit, 'Home', array('class' => 'nav-link text-dark')); ?>
+        <?php echo exhibit_builder_link_to_exhibit($exhibit, 'Home', array('class' => 'nav-link text-white')); ?>
       </li>
       <?php $toppages = $exhibit->TopPages; ?>
       <?php foreach ($toppages as $page): ?>
         <li class="nav-item">
-          <a class="nav-link text-dark" href="<?php echo $page->getRecordUrl('show'); ?>"><?php echo $page->title; ?></a>
+          <a class="nav-link text-white" href="<?php echo $page->getRecordUrl('show'); ?>"><?php echo $page->title; ?></a>
         </li>
       <?php endforeach; ?>
       <li class="nav-item">
-        <?php echo link_to_home_page('Leave Exhibit', array('class' => 'nav-link text-dark', 'data-barba-prevent' => "self")); ?>
+        <?php echo link_to_home_page('Exit', array('class' => 'nav-link text-white', 'data-barba-prevent' => "self")); ?>
       </li>
     </ul>
   </div>
