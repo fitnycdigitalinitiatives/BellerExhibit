@@ -353,6 +353,12 @@ body {
     padding-bottom: 5rem;
     max-height: 100%;
     overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .exhibit-block #image::-webkit-scrollbar {
+    display: none;
   }
 
   .exhibit-block #text-only {
@@ -363,6 +369,12 @@ body {
     padding-bottom: 5rem;
     max-height: 100%;
     overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .exhibit-block #text-only::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -403,6 +415,7 @@ body {
 /* Embed */
 .embed-responsive {
   margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .embed-responsive-7by5::before {
