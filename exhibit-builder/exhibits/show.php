@@ -4,8 +4,8 @@ echo head(array(
     'bodyclass' => 'exhibits show'));
 ?>
   <nav class="navbar navbar-light bg-light">
-    <?php echo exhibit_builder_link_to_exhibit(null, 'Max Meyer', array('class' => 'navbar-brand text-muted')); ?>
-    <button class="exhibit-menu text-muted border-0 bg-transparent" type="button" data-toggle="offcanvas" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <?php echo exhibit_builder_link_to_exhibit(null, metadata('exhibit', 'title'), array('class' => 'navbar-brand text-muted')); ?>
+    <button class="exhibit-menu text-muted border-0 bg-transparent p-0" type="button" data-toggle="offcanvas" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-bars" aria-hidden="true"></i><span class="sr-only">Toggle navigation menu</span>
     </button>
     <div class="offcanvas-collapse navbar-collapse" id="navbarSupportedContent">

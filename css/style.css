@@ -23,11 +23,12 @@ body {
 }
 
 .navbar {
-  padding: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .navbar-brand, .navbar {
-  font-size: 2.5rem;
+  font-size: 1.2rem;
 }
 
 .offcanvas-collapse {
@@ -39,7 +40,7 @@ body {
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
-  padding-top: .25rem;
+  padding-top: .5rem;
   line-height: 1.2;
   font-weight: bold;
   overflow-y: auto;
@@ -75,7 +76,7 @@ body {
   }
 
   .navbar-brand, .navbar {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
   .offcanvas-collapse {
@@ -94,14 +95,25 @@ body {
     z-index: 1030;
     margin-left: 0;
     margin-right: 0;
+    padding-bottom: 0;
+    padding-top: 0
+  }
+
+  .navbar-brand, .navbar {
+    font-size: 2.75rem;
   }
 
   .offcanvas-collapse {
     width: 60%;
+    padding-top: .25rem;
   }
 }
 
 @media (min-width: 992px) {
+  .navbar-brand, .navbar {
+    font-size: 3rem;
+  }
+
   .offcanvas-collapse {
     width: 50%;
   }
@@ -270,7 +282,7 @@ body {
 }
 
 .exhibit-block.layout-section .row {
-  min-height: calc(100vh - (70px + 68px + 20px));
+  min-height: calc(100vh - (54px + 68px + 20px));
   -ms-flex-align: center;
   align-items: center;
   -ms-flex-pack: center;
@@ -288,7 +300,7 @@ body {
 
   .exhibit-block.layout-section .row {
     min-height: 100vh;
-    margin-top: -82px;
+    margin-top: -74px;
     padding-bottom: 0;
   }
 
@@ -343,6 +355,12 @@ body {
     padding-bottom: 5rem;
     max-height: 100%;
     overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .exhibit-block #text::-webkit-scrollbar {
+    display: none;
   }
 
   .exhibit-block #image {

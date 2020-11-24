@@ -2,8 +2,8 @@
   <div class="row align-items-center fullscreen" id="exhibit-landing">
     <div class="col-md-7 py-5 ml-md-4" id="summary-block">
       <div class="jumbotron bg-light rounded-0 mb-0">
-        <h1>Max Meyer</h1>
-        <h2>History on Display</h2>
+        <h1>Max Meyer and A. Beller & Co.</h1>
+        <h2>Interpreting a Hidden History of NYC's Garment District</h2>
         <?php if ($exhibitDescription = metadata('exhibit', 'description', array('no_escape' => true))): ?>
   				<div class="exhibit-description">
   					<?php echo $exhibitDescription; ?>
