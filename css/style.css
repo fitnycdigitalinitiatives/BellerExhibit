@@ -158,11 +158,11 @@ body {
   }
 
   #exhibit-landing h1 {
-    font-size: 6rem;
+    font-size: 3rem;
   }
 
   #exhibit-landing h2 {
-    font-size: 2.25rem;
+    font-size: 1.75rem;
   }
 
   .exhibit-description {
@@ -171,18 +171,22 @@ body {
 }
 
 @media (min-width: 992px) {
+  #exhibit-landing h1 {
+    font-size: 3.5rem;
+  }
+
   #exhibit-landing h2 {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 }
 
 @media (min-width: 1200px) {
   #exhibit-landing h1 {
-    font-size: 7rem;
+    font-size: 5rem;
   }
 
   #exhibit-landing h2 {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
   }
 
   #exhibit-landing .jumbotron {
