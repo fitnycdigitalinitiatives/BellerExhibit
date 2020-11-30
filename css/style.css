@@ -308,6 +308,12 @@ strong, b {
   line-height: 1;
 }
 
+.card-footer .nav-item .info {
+  position: static;
+  padding: .5rem 1rem;
+  font-size: 2em;
+}
+
 .gallery-caption p {
   margin-bottom: 0;
 }

@@ -107,6 +107,16 @@ function init() {
     var listItems = $(this).children();
     $(this).append(listItems.get().reverse());
   });
+  //fix FITting Room nav
+  if (document.getElementsByTagName("title")[0].innerHTML.includes("FITting Room")) {
+    $('.info').each(function() {
+      var footer = $(this).parent();
+      var nav = footer.find('.nav-pills');
+      var new_div = $("<li class='nav-item'></li>");
+      new_div.append($(this).addClass('nav-link'));
+      nav.append(new_div).addClass('justify-content-between align-items-center');
+    });
+  }
 }
 $(document).ready(function() {
   init();
