@@ -15,6 +15,9 @@
         </ul>
         <?php $firstPage = $exhibit->getFirstTopPage(); ?>
         <?php echo exhibit_builder_link_to_exhibit($exhibit, '<i class="fas fa-angle-right" aria-hidden="true"></i><span class="sr-only">begin</span>', array('class' => 'begin text-dark'), $firstPage); ?>
+        <a href="https://www.fitnyc.edu">
+          <img id="fit-logo" src="<?php echo img('wordmark-black-1-line.png') ?>" alt="FIT SUNY Logo" id="fit-logo">
+        </a>
       </div>
     </div>
   </div>
