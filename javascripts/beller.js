@@ -96,10 +96,12 @@ function init() {
   });
   //fix modals
   $('.modal').each(function() {
-    $(this).appendTo("body");
-    $('.card-footer').attr({
+    $(this).attr({
       "data-barba-prevent": "all"
-    });
+    }).appendTo("body");
+  });
+  $('.card-footer').attr({
+    "data-barba-prevent": "all"
   });
   $('.modal-header').each(function() {
     var listItems = $(this).children();
