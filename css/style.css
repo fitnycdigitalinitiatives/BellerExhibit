@@ -330,6 +330,18 @@ strong, b {
   font-size: 2em;
 }
 
+@media (min-width: 1200px) {
+  .card-footer .nav-item i {
+    font-size: 1.25em;
+  }
+}
+
+@media (min-width: 1400px) {
+  .card-footer .nav-item i {
+    font-size: 2em;
+  }
+}
+
 .gallery-caption p {
   margin-bottom: 0;
 }
