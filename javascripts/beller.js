@@ -96,9 +96,7 @@ function init() {
   });
   //fix modals
   $('.modal').each(function() {
-    $(this).attr({
-      "data-backdrop": false
-    });
+    $(this).appendTo("body");
     $('.card-footer').attr({
       "data-barba-prevent": "all"
     });
