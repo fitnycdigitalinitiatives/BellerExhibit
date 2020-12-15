@@ -117,6 +117,116 @@ function init() {
       nav.append(new_div).addClass('justify-content-between align-items-center');
     });
   }
+  // collection api infitinite scroll
+  if ($('#collection-api').length && $('#collection-api').data('collection-id')) {
+    var collection = $('#collection-api').data('collection-id');
+    var index = 1;
+    loadCollection(collection, index);
+    $('#load-collection').click(function() {
+      index++;
+      loadCollection(collection, index);
+    });
+  }
+}
+
+function loadCollection(collection, index) {
+  $.getJSON("/api/items?collection=" + collection + "&page=" + index + "&per_page=30", function(data, status, xhr) {
+    var total_results = xhr.getResponseHeader("Omeka-Total-Results");
+    var index_max = Math.ceil(total_results / 30);
+    if (index_max == index) {
+      $('#load-collection').attr("disabled", true)
+    }
+    $.each(data, function(i, item) {
+      element_texts = item.element_texts;
+      var item_id = item.id;
+      var record_name = null;
+      var record_id = null;
+      var title = '';
+      for (var i = 0; i < element_texts.length; i++) {
+        if (element_texts[i].element.name == "Record Name") {
+          record_name = element_texts[i].text
+        }
+        if (element_texts[i].element.name == "Record ID") {
+          record_id = element_texts[i].text
+        }
+        if (element_texts[i].element.name == "Title") {
+          title = element_texts[i].text
+        }
+      }
+      if (record_name && record_id) {
+        var image_url = 'https://fitdil.fitnyc.edu/media/get/' + record_id + '/' + record_name + '/400x400/';
+        var card = `
+          <div class="col">
+            <div class="card mb-2">
+              <img class="card-img-top openseadragon-popup" id="openseadragon` + record_id + `" src="` + image_url + `" alt="` + title + `" data-record_id="` + record_id + `" data-record_name="` + record_name + `" />
+              <div class="card-footer gallery-caption">
+              <button class="info" type="button" name="button" data-toggle="modal" data-target="#record-modal` + record_id + `">
+                <i class="fas fa-info-circle"></i><span class="sr-only">Information</span>
+              </button>
+              </div>
+            </div>
+          </div>
+        `;
+        var modal = `
+        <!-- Record Modal -->
+        <div class="modal fade" id="record-modal` + record_id + `" tabindex="-1" role="dialog" aria-labelledby="myModalLabel` + record_id + `" data-barba-prevent="all">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+              <span class="modal-title font-weight-bold" id="myModalLabel` + record_id + `">Item Information</span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </div>
+              <div class="modal-body">
+                <h2>` + title + `</h2>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <a href="/items/show/` + item_id + `" class="btn btn-primary" role="button">View full record</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        `
+        $(card).appendTo('#collection-api');
+        $(modal).appendTo("body");
+
+      }
+    });
+    $('#load-collection').removeClass('d-none');
+    //redo OpenSeadragon
+    $('.openseadragon-popup').click(function() {
+      var currentViewer = $(this);
+      var currentViewerID = currentViewer.attr('id');
+      var seadragon_frame = $('<div class="openseadragon-full" id="' + currentViewerID + '-frame"><div class="loader"></div></div>');
+      $(this).append(seadragon_frame);
+      var recordID = $(this).data('record_id');
+      var recordName = $(this).data('record_name');
+      var iiifEndpoint = 'https://fitdil.fitnyc.edu/media/iiif/' + recordID + '/' + recordName + '/info.json';
+      var viewer = OpenSeadragon({
+        id: currentViewerID + '-frame',
+        prefixUrl: 'https://cdn.jsdelivr.net/npm/openseadragon@2.4/build/openseadragon/images/',
+        showNavigator: true,
+        navigatorSizeRatio: 0.1,
+        minZoomImageRatio: 0.8,
+        maxZoomPixelRatio: 10,
+        controlsFadeDelay: 1000,
+        tileSources: iiifEndpoint
+      });
+      viewer.setFullScreen(true).addHandler('full-screen', function(data) {
+        if (!data.fullScreen) {
+          setTimeout(function() {
+            viewer.destroy();
+          }, 300);
+        };
+      });
+      viewer.world.addHandler('add-item', function(event) {
+        var tiledImage = event.item;
+        tiledImage.addHandler('fully-loaded-change', function() {
+          $('.loader').remove();
+        });
+      });
+    });
+  });
 }
 $(document).ready(function() {
   init();

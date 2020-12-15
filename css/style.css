@@ -263,7 +263,9 @@ strong, b {
     transform: translateY(-50%);
     padding-right: .5rem;
   }
+}
 
+@media (min-width: 768px) {
   .next {
     position: absolute;
     right: 0;
@@ -370,7 +372,6 @@ strong, b {
     align-items: center;
     -ms-flex-pack: center;
     justify-content: center;
-    padding-bottom: 3rem;
   }
 
   .exhibit-block.layout-section .row {
@@ -405,7 +406,7 @@ strong, b {
 }
 
 @media (min-width:768px) {
-  .exhibit-block .row {
+  .exhibit-block>.row {
     height: 100vh;
     padding-bottom: 0;
   }
@@ -444,8 +445,8 @@ strong, b {
     max-width: 60%;
     padding-right: 3rem;
     padding-left: 15px;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
     max-height: 100%;
     overflow-y: auto;
     -ms-overflow-style: none;
@@ -667,6 +668,19 @@ strong, b {
 @media (min-width:1800px) {
   .card-deck .card.count-4 {
     flex: 0 0 calc((100% / 4) - 30px);
+  }
+}
+
+/* collection */
+#collection-api .card-footer {
+  padding: 1rem;
+}
+
+@media (min-width: 1800px) {
+  .row-cols-xxl-6>* {
+    -ms-flex: 0 0 16.666667%;
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
   }
 }
 
