@@ -168,7 +168,6 @@ function loadCollection(collection, index) {
           </div>
         `;
         var modal = `
-        <!-- Record Modal -->
         <div class="modal fade" id="record-modal` + record_id + `" tabindex="-1" role="dialog" aria-labelledby="myModalLabel` + record_id + `" data-barba-prevent="all">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -234,6 +233,8 @@ $(document).ready(function() {
     transitions: [{
         name: 'slide-transition',
         leave(data) {
+          //need to clear out modals so they don't get carried from page to page
+          $('body').children('.modal').remove();
           if (data.trigger.className.includes("previous") || data.trigger.className.includes("navbar-brand")) {
             return gsap.to(data.current.container, {
               xPercent: 100,
