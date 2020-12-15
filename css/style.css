@@ -684,27 +684,6 @@ strong, b {
   }
 }
 
-/* slider */
-#previous-slide {
-  position: absolute;
-  left: 1px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1000;
-  border-radius: 50%;
-  box-shadow: -1px 0px 3px 0px #888888;
-}
-
-#next-slide {
-  position: absolute;
-  right: 3rem;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1000;
-  border-radius: 50%;
-  box-shadow: -1px 0px 3px 0px #888888;
-}
-
 /* modal */
 .modal {
   background: rgba(0, 0, 0, 0.5);
