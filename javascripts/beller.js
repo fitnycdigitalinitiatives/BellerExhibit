@@ -269,7 +269,7 @@ $(document).ready(function() {
           if ($('#main').data('barba-namespace') == 'exhibits summary') {
             let tl = gsap.timeline(); //create the timeline
             return tl.from('#exhibit-landing', {
-                transform: "translateY(-100%)",
+                yPercent: -100,
                 duration: .75,
                 delay: 1
               })
