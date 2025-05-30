@@ -13,19 +13,20 @@ function public_nav_items_bootstrap()
     if (!isset($navArray)) {
         $navArray = array(
             array(
-                'label' =>__('Browse All'),
+                'label' => __('Browse All'),
                 'uri' => url('items/browse'),
-            ));
+            )
+        );
         if (total_records('Tag')) {
             $navArray[] = array(
-                    'label' => __('Browse by Tag'),
-                    'uri' => url('items/tags')
-                );
+                'label' => __('Browse by Tag'),
+                'uri' => url('items/tags')
+            );
         }
         $navArray[] = array(
-                'label' => __('Advanced Search'),
-                'uri' => url('items/search')
-            );
+            'label' => __('Advanced Search'),
+            'uri' => url('items/search')
+        );
     }
     $nav = nav($navArray, 'public_navigation_items');
     $nav->setPartial($partial);
@@ -41,8 +42,8 @@ function browse_sort_links_bootstrap($links, $wrapperTags = array())
     $defaults = array(
         'link_tag' => 'li',
         'list_tag' => 'ul',
-        'link_attr' => array( 'role' => 'presentation' ),
-        'list_attr' => array( 'id' => 'sort-links-list', 'class' => 'dropdown-menu' )
+        'link_attr' => array('role' => 'presentation'),
+        'list_attr' => array('id' => 'sort-links-list', 'class' => 'dropdown-menu')
     );
     $sortlistWrappers = array_merge($defaults, $wrapperTags);
     $linkAttrArray = array();
@@ -105,45 +106,45 @@ function item_search_filters_bootstrap(array $params = null)
             $filter = ucfirst($key);
             $displayValue = null;
             switch ($key) {
-                    case 'type':
-                        $filter = 'Item Type';
-                        $itemType = $db->getTable('ItemType')->find($value);
-                        if ($itemType) {
-                            $displayValue = $itemType->name;
-                        }
-                        break;
+                case 'type':
+                    $filter = 'Item Type';
+                    $itemType = $db->getTable('ItemType')->find($value);
+                    if ($itemType) {
+                        $displayValue = $itemType->name;
+                    }
+                    break;
 
-                    case 'collection':
-                        $collection = $db->getTable('Collection')->find($value);
-                        if ($collection) {
-                            $displayValue = strip_formatting(
-                                metadata(
-                                    $collection,
-                                    array('Dublin Core', 'Title'),
-                                    array('no_escape' => true)
-                                )
-                            );
-                        }
-                        break;
+                case 'collection':
+                    $collection = $db->getTable('Collection')->find($value);
+                    if ($collection) {
+                        $displayValue = strip_formatting(
+                            metadata(
+                                $collection,
+                                array('Dublin Core', 'Title'),
+                                array('no_escape' => true)
+                            )
+                        );
+                    }
+                    break;
 
-                    case 'user':
-                        $user = $db->getTable('User')->find($value);
-                        if ($user) {
-                            $displayValue = $user->name;
-                        }
-                        break;
+                case 'user':
+                    $user = $db->getTable('User')->find($value);
+                    if ($user) {
+                        $displayValue = $user->name;
+                    }
+                    break;
 
-                    case 'public':
-                    case 'featured':
-                        $displayValue = ($value == 1 ? __('Yes') : $displayValue = __('No'));
-                        break;
+                case 'public':
+                case 'featured':
+                    $displayValue = ($value == 1 ? __('Yes') : $displayValue = __('No'));
+                    break;
 
-                    case 'search':
-                    case 'tags':
-                    case 'range':
-                        $displayValue = $value;
-                        break;
-                }
+                case 'search':
+                case 'tags':
+                case 'range':
+                    $displayValue = $value;
+                    break;
+            }
             if ($displayValue) {
                 $displayArray[$filter] = $displayValue;
             }
@@ -168,7 +169,7 @@ function item_search_filters_bootstrap(array $params = null)
             $query = $row['terms'];
             if ((($element == 'Color Data') or ($element == 'Primary Color') or ($element == 'Facet Color')) and (preg_match('/^#[a-f0-9]{6}$/i', $query))) {
                 $color_name = color_name($query);
-                $advancedValue = '<div id="swatch" data-toggle="tooltip" title="Color name: '. $color_name . '"><div style="background-color:' . html_escape($query) . ';"></div></div>';
+                $advancedValue = '<div id="swatch" data-toggle="tooltip" title="Color name: ' . $color_name . '"><div style="background-color:' . html_escape($query) . ';"></div></div>';
                 $advancedArray[$i] = $advancedValue;
             } else {
                 if (isset($row['terms'])) {
@@ -229,7 +230,7 @@ function related_items($current_item)
             $html = '<div class="col-md-4 related-items"><div class="panel panel-default"><div class="panel-heading"><h4>Related Items</h4></div><div class="list-group">';
             foreach ($sliced_related_items as $related_item) {
                 if ((metadata($related_item, 'id')) != (metadata($current_item, 'id'))) {
-                    $html .= link_to_item('<div class="row"><div class="col-xs-4">' . mdid_square_thumbnail_tag($related_item, 'img-responsive') . '</div><div class="col-xs-8"><h3 class="list-group-item-heading">' . metadata($related_item, array('Dublin Core', 'Title')) . '</h3></div></div>', array('class'=>'list-group-item'), 'show', $related_item);
+                    $html .= link_to_item('<div class="row"><div class="col-xs-4">' . mdid_thumbnail_tag($related_item, 'img-responsive') . '</div><div class="col-xs-8"><h3 class="list-group-item-heading">' . metadata($related_item, array('Dublin Core', 'Title')) . '</h3></div></div>', array('class' => 'list-group-item'), 'show', $related_item);
                     release_object($related_item);
                 }
             }
@@ -256,7 +257,7 @@ function palette($current_item)
             $paramArray = array('search' => '', 'advanced' => $advanced);
             $params = http_build_query($paramArray);
             $url = url('/items/browse?') . $params;
-            $html .= '<li id="swatch" data-toggle="tooltip" title="Closest color: '. $name . '"><a href="' . $url .'">';
+            $html .= '<li id="swatch" data-toggle="tooltip" title="Closest color: ' . $name . '"><a href="' . $url . '">';
             $html .= '<span class="sr-only">' . $name . '</span><div style="background-color:' . $color . ';">';
             $html .= '</div></a></li>';
         }
@@ -310,7 +311,7 @@ function css4_color_board($palette = null)
         $paramArray = array('search' => '', 'advanced' => $advanced);
         $params = http_build_query($paramArray);
         $url = url('/items/browse?') . $params;
-        $html .= '<li id="swatch" data-toggle="tooltip" title="'. $color_name . '"><a href="' . $url .'">';
+        $html .= '<li id="swatch" data-toggle="tooltip" title="' . $color_name . '"><a href="' . $url . '">';
         $html .= '<span class="sr-only">' . $color_name . '</span><div style="background-color:' . $hexcode . ';">';
         $html .= '</div></a></li>';
     }
@@ -333,7 +334,7 @@ function basic_color_board($palette = null)
         $paramArray = array('search' => '', 'advanced' => $advanced);
         $params = http_build_query($paramArray);
         $url = url('/items/browse?') . $params;
-        $html .= '<li id="bar" data-toggle="tooltip" title="'. $color_name . '"><a href="' . $url .'">';
+        $html .= '<li id="bar" data-toggle="tooltip" title="' . $color_name . '"><a href="' . $url . '">';
         $html .= '<span class="sr-only">' . $color_name . '</span><div style="background-color:' . $hexcode . ';">';
         $html .= '</div></a></li>';
     }
@@ -342,37 +343,47 @@ function basic_color_board($palette = null)
 }
 function mdid_image_tag($item, $class)
 {
-    if (($record_name = metadata($item, array('Item Type Metadata', 'Record Name'))) && ($record_id = metadata($item, array('Item Type Metadata', 'Record ID')))) {
-        $html = '<img src="https://fitdil.fitnyc.edu/media/get/' . $record_id . '/' . $record_name . '/" class="' . $class . '" alt="' . metadata($item, array('Dublin Core', 'Title')) . '">';
+    if (($s3_path = metadata($item, array('Item Type Metadata', 's3_path'))) && ($iiifEndpoint = get_theme_option('iiif_endpoint'))) {
+        $parsed_url = parse_url($s3_path);
+        $key = ltrim($parsed_url["path"], '/');
+        $url = $iiifEndpoint . str_replace("/", "%2F", substr($key, 0, -4)) . "/full/1140,/0/default.jpg";
+        $html = '<img src="' . $url . '" class="' . $class . '" alt="' . metadata($item, array('Dublin Core', 'Title')) . '">';
         return $html;
     }
 }
 function mdid_medium_image_tag($item, $class)
 {
-    if (($record_name = metadata($item, array('Item Type Metadata', 'Record Name'))) && ($record_id = metadata($item, array('Item Type Metadata', 'Record ID')))) {
-        $html = '<img src="https://fitdil.fitnyc.edu/media/get/' . $record_id . '/' . $record_name . '/800x800" class="' . $class . '" alt="' . metadata($item, array('Dublin Core', 'Title')) . '">';
+    if ($s3_path = metadata($item, array('Item Type Metadata', 's3_path'))) {
+        $path_parts = pathinfo($s3_path);
+        $url = str_replace("/objects", "/thumbnails", $path_parts['dirname']) . '/' . substr($path_parts['filename'], 0, 36) . '.jpg';
+        $html = '<img src="' . $url . '" class="' . $class . '" alt="' . metadata($item, array('Dublin Core', 'Title')) . '">';
         return $html;
     }
 }
 function mdid_medium_image_url($item)
 {
-    if (($record_name = metadata($item, array('Item Type Metadata', 'Record Name'))) && ($record_id = metadata($item, array('Item Type Metadata', 'Record ID')))) {
-        $url = 'https://fitdil.fitnyc.edu/media/get/' . $record_id . '/' . $record_name . '/800x800/';
+    if ($s3_path = metadata($item, array('Item Type Metadata', 's3_path'))) {
+        $path_parts = pathinfo($s3_path);
+        $url = str_replace("/objects", "/thumbnails", $path_parts['dirname']) . '/' . substr($path_parts['filename'], 0, 36) . '.jpg';
         return $url;
     }
 }
 function mdid_rss_image_tag($item)
 {
-    if (($record_name = metadata($item, array('Item Type Metadata', 'Record Name'))) && ($record_id = metadata($item, array('Item Type Metadata', 'Record ID')))) {
-        $url = record_url($item, null, true);
-        $html = '<a href="' . $url . '"><img src="https://fitdil.fitnyc.edu/media/get/' . $record_id . '/' . $record_name . '/600x600/" class="rss" alt="' . metadata($item, array('Dublin Core', 'Title')) . '"></a>';
+    if ($s3_path = metadata($item, array('Item Type Metadata', 's3_path'))) {
+        $path_parts = pathinfo($s3_path);
+        $image_url = str_replace("/objects", "/thumbnails", $path_parts['dirname']) . '/' . substr($path_parts['filename'], 0, 36) . '.jpg';
+        $record_url = record_url($item, null, true);
+        $html = '<a href="' . $record_url . '"><img src="' . $image_url . '" class="rss" alt="' . metadata($item, array('Dublin Core', 'Title')) . '"></a>';
         return $html;
     }
 }
 function mdid_thumbnail_tag($item, $class)
 {
-    if (($record_name = metadata($item, array('Item Type Metadata', 'Record Name'))) && ($record_id = metadata($item, array('Item Type Metadata', 'Record ID')))) {
-        $html = '<div class="thumbnail-container"><img src="https://fitdil.fitnyc.edu/media/get/' . $record_id . '/' . $record_name . '/400x400/" class="' . $class . '" alt="' . metadata($item, array('Dublin Core', 'Title')) . '"></div>';
+    if ($s3_path = metadata($item, array('Item Type Metadata', 's3_path'))) {
+        $path_parts = pathinfo($s3_path);
+        $url = str_replace("/objects", "/thumbnails", $path_parts['dirname']) . '/' . substr($path_parts['filename'], 0, 36) . '.jpg';
+        $html = '<div class="thumbnail-container"><img src="' . $url . '" class="' . $class . '" alt="' . metadata($item, array('Dublin Core', 'Title')) . '"></div>';
         return $html;
     } else {
         $html = '<div class="thumbnail-container"><img src="' . img("fallback-image.png") . '" class="' . $class . '" alt="' . metadata($item, array('Dublin Core', 'Title')) . '"></div>';
@@ -381,25 +392,21 @@ function mdid_thumbnail_tag($item, $class)
 }
 function mdid_thumbnail_url($item)
 {
-    if (($record_name = metadata($item, array('Item Type Metadata', 'Record Name'))) && ($record_id = metadata($item, array('Item Type Metadata', 'Record ID')))) {
-        $url = 'https://fitdil.fitnyc.edu/media/get/' . $record_id . '/' . $record_name . '/400x400/';
+    if ($s3_path = metadata($item, array('Item Type Metadata', 's3_path'))) {
+        $path_parts = pathinfo($s3_path);
+        $url = str_replace("/objects", "/thumbnails", $path_parts['dirname']) . '/' . substr($path_parts['filename'], 0, 36) . '.jpg';
         return $url;
-    }
-}
-function mdid_square_thumbnail_tag($item, $class)
-{
-    if (($record_name = metadata($item, array('Item Type Metadata', 'Record Name'))) && ($record_id = metadata($item, array('Item Type Metadata', 'Record ID')))) {
-        $html = '<div class="thumbnail-container"><img src="https://fitdil.fitnyc.edu/media/thumb/' . $record_id . '/' . $record_name . '/?square" class="' . $class . '" alt="' . metadata($item, array('Dublin Core', 'Title')) . '"></div>';
-        return $html;
     }
 }
 function public_domain_download($item)
 {
     $rights = metadata($item, array('Dublin Core', 'Rights'), array('all' => true));
     if (in_array("Public Domain", $rights)) {
-        if (($record_name = metadata($item, array('Item Type Metadata', 'Record Name'))) && ($record_id = metadata($item, array('Item Type Metadata', 'Record ID')))) {
-            $url = 'https://fitdil.fitnyc.edu/media/get/' . $record_id . '/' . $record_name . '/?forcedl';
-            $html = '<div class="hidden-xs" id="pd-download"><a href="' . $url . '" data-toggle="tooltip" data-placement="bottom" title="Please see Rights statement below for usage guidelines."><i class="fa fa-download" aria-hidden="true"></i> Download</a></div>';
+        if (($s3_path = metadata($item, array('Item Type Metadata', 's3_path'))) && ($iiifEndpoint = get_theme_option('iiif_endpoint'))) {
+            $parsed_url = parse_url($s3_path);
+            $key = ltrim($parsed_url["path"], '/');
+            $url = $iiifEndpoint . str_replace("/", "%2F", substr($key, 0, -4)) . "/full/max/0/default.jpg";
+            $html = '<div class="hidden-xs" id="pd-download"><a class="download" href="' . $url . '" data-toggle="tooltip" data-placement="bottom" title="Please see Rights statement below for usage guidelines."><i class="fa fa-download" aria-hidden="true"></i> Download</a></div>';
             return $html;
         }
     }
