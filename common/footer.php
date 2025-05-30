@@ -9,7 +9,7 @@
     <script>
       const settingsIiifEndpoint = "<?php echo get_theme_option('iiif_endpoint'); ?>";
     </script>
-    <script src="<?php echo src('beller', 'javascripts', 'js'); ?>"></script>
+    <script src="<?php echo src('beller', 'javascripts', 'js', '1.1'); ?>"></script>
     </body>
 
     </html>
